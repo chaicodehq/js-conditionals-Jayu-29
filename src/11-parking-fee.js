@@ -34,4 +34,32 @@
  */
 export function calculateParkingFee(hours, vehicleType) {
   // Your code here
+  let firstHourFee;
+  let afterHoueFee;
+  let dailyMaxFee;
+  if(hours <= 0 ){
+    return -1;
+  }
+  hours = Math.ceil(hours);
+  switch (vehicleType) {
+    case "car":
+      firstHourFee = 5;
+      afterHoueFee = 3;
+      dailyMaxFee = 30;
+      break;
+      case "motorcycle":
+      firstHourFee = 3;
+      afterHoueFee = 2;
+      dailyMaxFee = 18;
+      break;
+      case "bus":
+      firstHourFee = 10;
+      afterHoueFee = 7;
+      dailyMaxFee = 60;
+      break;
+    default:
+      return -1;
+  }
+  const parkingFee = Math.min((firstHourFee + (hours-1)*afterHoueFee), dailyMaxFee);
+  return parkingFee;
 }
